@@ -64,24 +64,28 @@ LC
 Seront mis à coté les messages envoyer et le message de retour attendu,
 Parfois, plusieurs commandes différentes ont une même réponse attendu.
 
-### Serveur :  
-srv_systm_attentejoueur1cltX_systm_connexion 
-srv_systm_attentejoueur2
+### Serveur :
+```
+srv_systm_attentejoueur_1
+srv_systm_attentejoueur_2
 
 srv_morpi_initmorpion
 srv_morpi_checketatmorpion
-srv_morpi_resyncmorpion_XXXXXXXXX
+srv_morpi_updatemorpion_XXXXXXXXX
 
 srv_morpi_attactionj1
 srv_morpi_attactionj2
 
 srv_morpi_j1gagner
 srv_morpi_j2gagner
-
+```
 
 ### Client (avec X pour le num du client) :
+```
+cltX_systm_connexion
 cltX_morpi_etatmorpion_XXXXXXXX (voir au dessus pour l'explications des XXXXXXXXX)
 cltX_morpi_resychronise
 
 cltX_morpi_dessiner_LC (Ligne Collonne)
 cltX_morpi_dessinercroix_LC
+```
