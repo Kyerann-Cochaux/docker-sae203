@@ -69,8 +69,7 @@ encodage signifié dans les commandes ainsi :
 
 ## Commandes :
 (écrit tout en minuscule, les indications en majuscule sont expliquer ci-dessus.)
-Seront mis à coté les messages envoyer et le message de retour attendu,
-Parfois, plusieurs commandes différentes ont une même réponse attendu.
+
 
 ### Serveur :
 ```
