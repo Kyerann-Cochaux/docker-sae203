@@ -1,4 +1,5 @@
-
+import java.net.* ;
+import java.io.* ;
 
 /**
  * Client
@@ -13,8 +14,27 @@
 
 public class Client
 {
+	// Attributs
 	private Controleur ctrl ;
 	
+	// Constructeurs
+	private Client ( Controleur ctrl )
+	{
+		this.ctrl = ctrl ;
+	}
+	
+	// Autres Méthodes
+	private void envoyerCmd( String cmd )
+	{
+		
+	}
+	
+	private void recevoirCmd( String cmd )
+	{
+		
+	}
+	
+	// Méthode Principale
 	public static void main(String[] args)
 	{
 		
