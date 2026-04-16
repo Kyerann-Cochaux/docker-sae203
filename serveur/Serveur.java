@@ -20,16 +20,15 @@ public class Serveur
 	// Attributs
 	private Metier metier ;
 	
-	private ServeurSocket srv ;
+	private ServerSocket srv ;
 	
-	private PrintWriter    sortie ;
-	private BufferedReader entrer ;
+	private GererClient gestionClt ;
 	
 	// Constructeurs
-	public Serveur ( Metier metier, int port )
+	public Serveur( int port )
 	{
-		this.metier = metier ;
-		demarerServeur( port ) ;
+		this.metier = new Metier(this) ;
+		this.demarerServeur( port );
 	}
 	
 	// Autres Méthodes
@@ -42,41 +41,43 @@ public class Serveur
 				this.srv    = new ServerSocket( port ) ;
 				Socket cltX = serverSocket.accept();
 				
-				GererClient gestionClt = new GererClient( cltX );
+				this.gestionClt = new GererClient( cltX, this );
 				
-				Thread thread = new Thread( gestionClt );
+				Thread thread = new Thread( this.gestionClt );
 				thread.start();
 			}
 		}
 		catch ( IOException e )
 		{
-			
+			e.printStackTrace();
 		}
 	}
 	
 	private void fermerServeur()
 	{
-		
+		try
+		{
+			if ( this.srv != null ) { srv.close(); }
+		}
+		catch ( IOException e )
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	private void envoyerCmd( String cmd )
 	{
-		
+		this.gestionClt.envoyerCmdDuServeur( cmd );
 	}
 	
 	private void recevoirCmd( String cmd )
 	{
 		this.metier.traiterCommande( cmd ) ;
 	}
-
-	// Modifieurs
-	public void setClt1 ( Socket clt1 ) { this.clt1 = clt1 ; }
-	
-	public void setClt2 ( Socket clt2 ) { this.clt2 = clt2 ; }
 	
 	// Méthode Principale
 	public static void main(String[] args)
 	{
-		
+		Serveur serveurMorpion = new Serveur(9000);
 	}
 }
