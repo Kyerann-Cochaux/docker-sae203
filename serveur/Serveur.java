@@ -26,9 +26,10 @@ public class Serveur
 	private BufferedReader entrer ;
 	
 	// Constructeurs
-	public Serveur ( Metier metier )
+	public Serveur ( Metier metier, int port )
 	{
 		this.metier = metier ;
+		demarerServeur( port ) ;
 	}
 	
 	// Autres Méthodes
