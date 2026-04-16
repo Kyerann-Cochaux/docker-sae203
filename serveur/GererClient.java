@@ -54,7 +54,7 @@ public class GererClient implements Runnable
 			try
 			{
 				cmd = entrer.readLine();         // On attend qu'on client envoie une commande
-				this.srv.traiterCommande( cmd ); // Puis on l'envoie au Serveur pour être traité
+				this.srv.recevoirCmd( cmd ); // Puis on l'envoie au Serveur pour être traité
 			}
 			catch ( IOException e )
 			{
@@ -74,10 +74,13 @@ public class GererClient implements Runnable
 	 */
 	public void envoyerCmdDuServeur( String cmd )
 	{
-		for ( GererClient clients : GererClient.gestionClient )
+		try
 		{
-			clients.sortie.write( cmd );
-			clients.sortie.flush();
+			for ( GererClient clients : GererClient.gestionClient )
+			{
+				clients.sortie.write( cmd );
+				clients.sortie.flush();
+			}
 		}
 		catch ( IOException e )
 		{

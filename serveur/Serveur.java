@@ -39,7 +39,7 @@ public class Serveur
 			while ( ! srv.isClosed() )
 			{
 				this.srv    = new ServerSocket( port ) ;
-				Socket cltX = serverSocket.accept();
+				Socket cltX = this.srv.accept();
 				
 				this.gestionClt = new GererClient( cltX, this );
 				
@@ -65,12 +65,12 @@ public class Serveur
 		}
 	}
 	
-	private void envoyerCmd( String cmd )
+	public void envoyerCmd( String cmd )
 	{
 		this.gestionClt.envoyerCmdDuServeur( cmd );
 	}
 	
-	private void recevoirCmd( String cmd )
+	public void recevoirCmd( String cmd )
 	{
 		this.metier.traiterCommande( cmd ) ;
 	}
