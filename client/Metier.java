@@ -60,7 +60,7 @@ public class Metier
 	}
 	
 	
-	public String toString()
+	public String toString() 
 	{
 		String sRet = "";
 		

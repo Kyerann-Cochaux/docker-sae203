@@ -36,13 +36,14 @@ public class Controleur
 		new Controleur();
 	}
 
-	public void dessiner(int lig, int col)
+	public void dessiner(int lig, int col) 
 	{
-		this.client.dessiner(lig, col);
+		// méthode dans Client.java
+		// this.client.dessiner(lig, col);
 		
 		// Pour test : 
-		// int let = col + lig * this.metier.getNbCol();
-		// this.testStringMorpionCetteVariableVaEtreSupprime = this.testStringMorpionCetteVariableVaEtreSupprime.substring(0,let) + 'x'+ this.testStringMorpionCetteVariableVaEtreSupprime.substring(let+1);
+		int let = col + lig * this.metier.getNbCol();
+		this.testStringMorpionCetteVariableVaEtreSupprime = this.testStringMorpionCetteVariableVaEtreSupprime.substring(0,let) + 'x'+ this.testStringMorpionCetteVariableVaEtreSupprime.substring(let+1);
 		
 		this.metier.updateMorpion();
 		
