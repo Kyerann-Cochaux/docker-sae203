@@ -13,8 +13,6 @@ public class PanelGrille extends JPanel implements ActionListener
 
 	JButton[][] tabLblCase;
 
-	Integer lig, col;
-
 
 	public PanelGrille(Controleur ctrl)
 	{
@@ -71,49 +69,42 @@ public class PanelGrille extends JPanel implements ActionListener
 				tabLblCase[lig][col].addActionListener(this);
 			}
 		}
-
-	}
 		
-
+	}
+	
+	
 	public void majIHM()
 	{
 		for ( int lig=0; lig< this.tabLblCase.length; lig++)
 			for ( int col=0; col< this.tabLblCase[lig].length; col++)
 			{
 				if (ctrl.getValeur(lig, col) == 'x')
-					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/croix.png"));
+					this.tabLblCase[lig][col].setIcon(new ImageIcon("./images/croix.png"));
 
 				if (ctrl.getValeur(lig, col) == 'o')
-					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/rond.jpg"));
+					this.tabLblCase[lig][col].setIcon(new ImageIcon("./images/rond.jpg"));
 
 				if (ctrl.getValeur(lig, col) == '0')
-					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/vide.jpg"));
+					this.tabLblCase[lig][col].setIcon(new ImageIcon("./images/vide.jpg"));
 				
 				this.tabLblCase[lig][col].setOpaque(true);
 			}
-
+		
 	}
-
+	
 	public void actionPerformed (ActionEvent e)
 	{
-		this.lig = null;
-		this.col = null;
-
 		for (int lig=0; lig < this.ctrl.getNbLigne(); lig++ )
 		{
 			for (int col=0; col < this.ctrl.getNbColonne(); col++ )
 			{
 				if (e.getSource() == tabLblCase[lig][col]);
 				{
-					this.lig = lig;
-					this.col = col;
+					this.ctrl.dessiner(lig, col);
 				}
 			}
 		}
-
+		
 	}
-
-	public int choixCol (){return this.col;};
-	public int choixLig (){return this.lig;};
 
 }

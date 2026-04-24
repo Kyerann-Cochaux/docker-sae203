@@ -5,9 +5,9 @@ public class Metier
 	
 	private char[][] morpion;
 	
-	private Controlleur ctrl;
+	private Controleur ctrl;
 	
-	public Metier(Controlleur ctrl)
+	public Metier(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
 		
@@ -26,14 +26,18 @@ public class Metier
 		this.updateMorpion();
 	}
 	
-	public int      getNbLig  () { return this.NB_LIG;  }
-	public int      getNbCol  () { return this.NB_COL;  }
+	public int      getNbLig  () { return this.NB_LIG; }
+	public int      getNbCol  () { return this.NB_COL; }
 	
 	
-	private void updateMorpion() { this.morpion = this.getMorpion(); }
-	private char[][] getMorpion()
+	public void updateMorpion()
 	{
-		String sMorpion = ctrl.getMorpion();
+		this.morpion = this.getMorpion();
+	}
+	
+	public char[][] getMorpion()
+	{
+		String sMorpion = ctrl.getRawMorpion();
 		
 		char[][] retMorpion = new char[this.NB_LIG][];
 		int numCara = 0;
@@ -55,6 +59,15 @@ public class Metier
 		return this.morpion[lig][col];
 	}
 	
-	// majIHM() : void
 	
+	public String toString()
+	{
+		String sRet = "";
+		
+		for (int lig = 0; lig < this.NB_LIG; lig++)
+			for (int col = 0; col < this.NB_COL; col++)
+				sRet+=this.morpion[lig][col];
+		
+		return sRet;
+	}
 }
