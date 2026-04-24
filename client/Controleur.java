@@ -14,6 +14,9 @@ public class Controleur
 	public int       getNbColonne()                 { return this.metier.getNbCol   ();        }
 	public char[][]  getMorpion  ()                 { return this.metier.getMorpion ();        } //renvoie un tab 2 dimension de char
 	public char      getValeur   (int lig, int col) { return this.metier.getValeur (lig, col); }
+
+	public int choixCol (){return this.ihm.choixCol();};
+	public int choixLig (){return this.ihm.choixLig();};
 	
 	public String getRawMorpion()
 	{
