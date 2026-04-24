@@ -24,4 +24,7 @@ public class FrameGrille extends JFrame
 	{
 		this.panelGrille.majIHM();
 	}
+
+	public int choixCol (){return this.panelGrille.choixCol ();};
+	public int choixLig (){return this.panelGrille.choixLig ();};
 }
