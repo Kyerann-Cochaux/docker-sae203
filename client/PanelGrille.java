@@ -7,11 +7,13 @@ import java.util.Arrays;
 
 import java.awt.event.*;
 
-public class PanelGrille extends JPanel 
+public class PanelGrille extends JPanel implements ActionListener
 {
 	Controleur ctrl;
 
-	JLabel[][] tabLblCase;
+	JButton[][] tabLblCase;
+
+	Integer lig, col;
 
 
 	public PanelGrille(Controleur ctrl)
@@ -27,20 +29,20 @@ public class PanelGrille extends JPanel
 		/*------------------------------*/
 
 		// Création des Labels
-		this.tabLblCase  = new JLabel [ this.ctrl.getNbLigne() ] [ this.ctrl.getNbColonne() ];
+		this.tabLblCase  = new JButton [ this.ctrl.getNbLigne() ] [ this.ctrl.getNbColonne() ];
 
 
 		for (int lig=0;lig<tabLblCase.length; lig++ )
 			for (int col=0;col<tabLblCase[lig].length; col++ )
 			{
 				if (ctrl.getValeur(lig, col) == 'x')
-					this.tabLblCase[lig][col] = new JLabel(new ImageIcon("./images/croix.png"));
+					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/croix.png"));
 
 				if (ctrl.getValeur(lig, col) == 'o')
-					this.tabLblCase[lig][col] = new JLabel(new ImageIcon("./images/rond.jpg"));
+					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/rond.jpg"));
 
 				if (ctrl.getValeur(lig, col) == '0')
-					this.tabLblCase[lig][col] = new JLabel(new ImageIcon("./images/vide.jpg"));
+					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/vide.jpg"));
 
 				this.tabLblCase[lig][col].setOpaque(true);
 			}
@@ -58,6 +60,18 @@ public class PanelGrille extends JPanel
 			}
 		}
 
+		/*------------------------------*/
+		/* Activation des composants    */
+		/*------------------------------*/
+
+		for (int lig=0; lig < this.ctrl.getNbLigne(); lig++ )
+		{
+			for (int col=0; col < this.ctrl.getNbColonne(); col++ )
+			{
+				tabLblCase[lig][col].addActionListener(this);
+			}
+		}
+
 	}
 		
 
@@ -67,17 +81,39 @@ public class PanelGrille extends JPanel
 			for ( int col=0; col< this.tabLblCase[lig].length; col++)
 			{
 				if (ctrl.getValeur(lig, col) == 'x')
-					this.tabLblCase[lig][col] = new JLabel(new ImageIcon("./images/croix.png"));
+					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/croix.png"));
 
 				if (ctrl.getValeur(lig, col) == 'o')
-					this.tabLblCase[lig][col] = new JLabel(new ImageIcon("./images/rond.jpg"));
+					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/rond.jpg"));
 
 				if (ctrl.getValeur(lig, col) == '0')
-					this.tabLblCase[lig][col] = new JLabel(new ImageIcon("./images/vide.jpg"));
+					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/vide.jpg"));
 				
 				this.tabLblCase[lig][col].setOpaque(true);
 			}
 
 	}
+
+	public void actionPerformed (ActionEvent e)
+	{
+		this.lig = null;
+		this.col = null;
+
+		for (int lig=0; lig < this.ctrl.getNbLigne(); lig++ )
+		{
+			for (int col=0; col < this.ctrl.getNbColonne(); col++ )
+			{
+				if (e.getSource() == tabLblCase[lig][col]);
+				{
+					this.lig = lig;
+					this.col = col;
+				}
+			}
+		}
+
+	}
+
+	public int choixCol (){return this.col;};
+	public int choixLig (){return this.lig;};
 
 }
