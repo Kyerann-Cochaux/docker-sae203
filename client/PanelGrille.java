@@ -73,7 +73,7 @@ public class PanelGrille extends JPanel implements ActionListener
 	}
 	
 	
-	public void majIHM()
+	public void majIHM() 
 	{
 		for ( int lig=0; lig< this.tabLblCase.length; lig++)
 			for ( int col=0; col< this.tabLblCase[lig].length; col++)
