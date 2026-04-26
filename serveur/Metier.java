@@ -3,12 +3,13 @@
  * 
  * Classe métier pour le serveur
  * 
- * Implémentation de traiterCommande, etatMorpion et dessiner
+ * Implémentation de connexion, resynchronise et gagner. Implémentation de l'envoie des commandes
  * LC de 00 à 22
  * J1 : x J2 : o
+ * srv_morpi_checketatmorpion et srv_systm_attentejoueur_1 non utilsé
  *
  * @author Ethan Bapaume
- * @version 0.2 du 17/04/2026
+ * @version 0.3 du 26/04/2026
  */
 
 public class Metier
@@ -34,12 +35,26 @@ public class Metier
 
 	public void connexion(int numClient)
 	{
+		if (numClient == 1)
+			this.srv.envoyerCmd("srv_systm_attentejoueur_2");
 		
+		if (numClient == 2)
+			this.srv.envoyerCmd("srv_morpi_initmorpion");
 	}
 
-	public void resynchronise(int numClient)
+	public void resynchronise()
 	{
+		String cmd = "srv_morpi_updatemorpion_";
 
+		for (int lig = 0; lig < this.plateau.length; lig++)
+		{
+			for (int col = 0; col < this.plateau[lig].length; col++)
+			{
+				cmd += plateau[lig][col];
+			}
+		}
+
+		this.srv.envoyerCmd(cmd);
 	}
 
 	public boolean etatMorpion(String etat)
@@ -72,12 +87,24 @@ public class Metier
 		if (numClient == 1)
 		{
 			this.plateau[lig][col] = 'x';
+
+			if(this.gagner('x'))
+				this.srv.envoyerCmd("srv_morpi_j1gagner");
+			else
+				this.srv.envoyerCmd("srv_morpi_attactionj2");
+
 			return true;
 		}
 
 		if (numClient == 2)
 		{
 			this.plateau[lig][col] = 'o';
+
+			if(this.gagner('o'))
+				this.srv.envoyerCmd("srv_morpi_j2gagner");
+			else
+				this.srv.envoyerCmd("srv_morpi_attactionj1");
+
 			return true;
 		}
 
@@ -121,7 +148,7 @@ public class Metier
 		
 			case "morpi_resychronise":
 				{
-					this.resynchronise(numClient);
+					this.resynchronise();
 					//System.out.println(numClient + " " + ordre); //Print de test
 					break;
 				}
@@ -160,11 +187,71 @@ public class Metier
 		return true;
 	}
 
+	//méthode qui détermine si un joueur a gagné
+	public boolean gagner(char symbole)
+	{
+		boolean valide;
+
+		//vérifie chaque ligne
+		for (int lig = 0; lig < this.plateau.length; lig++)
+		{
+			valide = true;
+
+			for (int col = 0; col < this.plateau[lig].length; col++)
+			{
+				if (this.plateau[lig][col] != symbole)
+					valide = false;
+			}
+
+			if (valide)
+				return true;
+		}
+
+		//vérifie chaque colonne
+		for (int col = 0; col < this.plateau[0].length; col++)
+		{
+			valide = true;
+
+			for (int lig = 0; lig < this.plateau.length; lig++)
+			{
+				if (this.plateau[lig][col] != symbole)
+					valide = false;
+			}
+
+			if (valide)
+				return true;
+		}
+
+		//vérifie la première diagonale
+		valide = true;
+		for (int lig = 0, col = 0; lig < this.plateau.length && col < this.plateau[lig].length; lig++, col++)
+		{
+			if (this.plateau[lig][col] != symbole)
+					valide = false;
+		}
+
+		if (valide)
+			return true;
+
+		//vérifie la deuxième diagonale
+		valide = true;
+		for (int lig = 0, col = this.plateau[lig].length - 1; lig < this.plateau.length && col >= 0; lig++, col--)
+		{
+			if (this.plateau[lig][col] != symbole)
+					valide = false;
+		}
+		
+		if (valide)
+			return true;
+
+		return false;
+	}
+
 	/* //Main de test
 	public static void main(String[] args)
 	{
 		Metier metier = new Metier(new Serveur());
-		System.out.println(metier.traiterCommande("clt1_morpi_etatmorpion_o00o00o00"));
+		System.out.println(metier.traiterCommande("clt1_morpi_etatmorpion_o000o0o0o"));
 		for (int lig = 0; lig < metier.plateau.length; lig++)
 		{
 			for (int col = 0; col < metier.plateau[lig].length; col++)
@@ -173,6 +260,7 @@ public class Metier
 			}
 			System.out.println();
 		}
+		System.out.println(metier.gagner('o'));
 	}
 	*/
 }
