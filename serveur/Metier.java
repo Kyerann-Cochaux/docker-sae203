@@ -39,7 +39,10 @@ public class Metier
 			this.srv.envoyerCmd("srv_systm_attentejoueur_2");
 		
 		if (numClient == 2)
+		{
 			this.srv.envoyerCmd("srv_morpi_initmorpion");
+			this.srv.envoyerCmd("srv_morpi_attactionj1");
+		}
 	}
 
 	public void resynchronise()
