@@ -41,7 +41,7 @@ public class Metier
 		if (numClient == 2)
 		{
 			this.srv.envoyerCmd("srv_morpi_initmorpion");
-			this.srv.envoyerCmd("srv_morpi_attactionj1");
+			//this.srv.envoyerCmd("srv_morpi_attactionj1");
 		}
 	}
 
