@@ -39,10 +39,7 @@ public class Metier
 			this.srv.envoyerCmd("srv_systm_attentejoueur_2");
 		
 		if (numClient == 2)
-		{
 			this.srv.envoyerCmd("srv_morpi_initmorpion");
-			this.srv.envoyerCmd("srv_morpi_attactionj1");
-		}
 	}
 
 	public void resynchronise()
@@ -90,12 +87,11 @@ public class Metier
 		if (numClient == 1)
 		{
 			this.plateau[lig][col] = 'x';
-			this.resynchronise();
 
 			if(this.gagner('x'))
 				this.srv.envoyerCmd("srv_morpi_j1gagner");
 			else
-				this.srv.envoyerCmd("srv_morpi_attactionj2");
+				this.resynchronise();
 
 			return true;
 		}
@@ -103,12 +99,11 @@ public class Metier
 		if (numClient == 2)
 		{
 			this.plateau[lig][col] = 'o';
-			this.resynchronise();
 
 			if(this.gagner('o'))
 				this.srv.envoyerCmd("srv_morpi_j2gagner");
 			else
-				this.srv.envoyerCmd("srv_morpi_attactionj1");
+				this.resynchronise();
 
 			return true;
 		}
