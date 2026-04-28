@@ -17,36 +17,15 @@ public class Client
 	// Attributs
 	private Controleur ctrl ;
 	private int        numJoueur ;
+	private String     cmdActuelle ;
 	
 	// Constructeurs
-	public Client()
+	public Client( String[] arg )
 	{
 		this.ctrl      = new Controleur(this) ;
 		this.numJoueur = -1 ;
-	}
-	
-	// Accesseur
-	public int getNumJoueur() { return this.numJoueur ; }
-	
-	// Modifieur
-	public void setNumJoueur( int nvNum ) { this.numJoueur = nvNum ; }
-	
-	// Autres Méthodes
-	public String envoyerCmd( String cmd )
-	{
+		this.cmdActuelle = "";
 		
-		
-		return null ;
-	}
-	
-	public void recevoirCmd( String cmd )
-	{
-		this.ctrl.traiterCmd(cmd);
-	}
-	
-	// Méthode Principale
-	public static void main(String[] arg)
-	{
 		try
 		{
 			// Vérifications du Nom et Port de l'Hôte attendu en Arguments
@@ -65,8 +44,6 @@ public class Client
 			}
 			// Connexion
 			Socket cli = new Socket( nomHote, Integer.parseInt(portHote) );
-			// Création de l'obj Client
-			Client clt = new Client();
 			
 			// Ouverture du de l'input
 			BufferedReader in = new BufferedReader( new InputStreamReader(cli.getInputStream()) );
@@ -74,12 +51,44 @@ public class Client
 			// Ouverture de l'Envoie de Texte
 			PrintWriter out = new PrintWriter( cli.getOutputStream(), true );
 			
+			// 1ère Lecture
+			String cmd = in.readLine();
 			
+			// Boucle d'E/R de Texte
+			while ( cmd != "" )
+			{
+				this.recevoirCmd( cmd );
+				out.println( this.cmdActuelle );
+				
+				cmd = in.readLine();
+			}
 			
+			in.close();
+			cli.close();
 		}
 		catch ( IOException e )
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	// Accesseur
+	public int getNumJoueur()   { return this.numJoueur   ; }
+	
+	// Modifieur
+	public void setNumJoueur( int nvNum ) { this.numJoueur = nvNum ; }
+	
+	public void envoyerCmd( String cmd ) { this.cmdActuelle = cmd ; }
+	
+	// Autres Méthodes
+	public void recevoirCmd( String cmd )
+	{
+		this.ctrl.traiterCmd(cmd);
+	}
+	
+	// Méthode Principale
+	public static void main(String[] arg)
+	{
+		Client clientMorpion = new Client(arg);
 	}
 }
