@@ -5,6 +5,7 @@
  <head>
 	<meta charset="UTF-8">
 	<title>docker-sae2.03</title>
+	<link rel="stylesheet" href="style.css">
  </head>
 	
  <body>
@@ -14,7 +15,7 @@
 	
 	<ol>
     	<li>Développer un jeu morpion en multijoueur</li>
-    	<li>Utiliser une architecture client-serveur avec sockets Java</li>
+    	<li>Utiliser une architecture client-serveur avec sockets Java et des threads pour gérer de multiple clients</li>
     	<li>Créer une interface graphique avec de l'IHM</li>
     	<li>intégrer un docker pour héberger le serveur</li>
     </ol>
@@ -36,7 +37,7 @@
     <h4>Utilisation de Docker</h4>
     <p> Docker est outil de virtualisation qui permet de créer des conteneurs, 
         c'est a dire des environneemnt isolés. Contrairement à une machine virtuelle, un conteneur est plus léger, rapide et facile à déployer. <br/>
-        Nous avons utilisé un docker dans  notre projet pour héberger le serveur et uniformiser l'environnement d'exécuion.
+        Nous avons utilisé un docker dans  notre projet pour héberger le serveur et uniformiser l'environnement d'exécution.
     </p>
     
     <h4>Fonctionnement du jeu</h4>
@@ -49,13 +50,12 @@
     
     <h4>Comment l'état du Morpion est-il communiqué a l'IHM?</h4>
     <p>
-    	Il sera nécessaire de communiquer l'entièreté du morpion.<br/>
+    	Il est nécessaire de communiquer l'entièreté du morpion.<br/>
 
 		Cette information sera communiquer ainsi :<br/>
 		"x" : croix <br/>
 		"o" : rond <br/>
 		"0" : case vide <br/>
-		
 		
     </p>
     
