@@ -15,7 +15,7 @@ Ce projet est un jeu de Morpion qui utilise docker afin de permettre à deux jou
 docker build -t morpion .
 ```
 
-- Lancer l'image en exposant le port :
+- Lancer l'image en exposant le port 9000 :
 ```shell
 docker run --rm -p <port hôte>:9000 morpion
 ```
