@@ -80,6 +80,13 @@ public class Serveur
 	// Méthode Principale
 	public static void main(String[] args)
 	{
-		Serveur serveurMorpion = new Serveur(9000);
+		if ( args.length == 1 )
+		{
+			Serveur serveurMorpion = new Serveur(Integer.parseInt(args[0]));
+		}
+		else
+		{
+			System.exit(1);
+		}
 	}
 }

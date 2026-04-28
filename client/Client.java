@@ -54,6 +54,8 @@ public class Client
 			// 1ère Lecture
 			String cmd = in.readLine();
 			
+			System.out.println("Commande reçu !");
+			
 			// Boucle d'E/R de Texte
 			while ( cmd != "" )
 			{

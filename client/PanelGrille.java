@@ -33,6 +33,7 @@ public class PanelGrille extends JPanel implements ActionListener
 		for (int lig=0;lig<tabLblCase.length; lig++ )
 			for (int col=0;col<tabLblCase[lig].length; col++ )
 			{
+				
 				if (ctrl.getValeur(lig, col) == 'x')
 					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/croix.png"));
 
@@ -43,6 +44,7 @@ public class PanelGrille extends JPanel implements ActionListener
 					this.tabLblCase[lig][col] = new JButton(new ImageIcon("./images/vide.jpg"));
 
 				this.tabLblCase[lig][col].setOpaque(true);
+				this.tabLblCase[lig][col].setPreferredSize(new Dimension(65, 65));
 			}
 
 
