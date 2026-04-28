@@ -4,11 +4,11 @@
 ## Liste des commandes échangées entre serveur & clients  
 
 ### Format :  
-`[srv ou clt]_[catégorie de commande]_[nom de la commande](_[contenu de la commande])`
+`[srv ou clt1 ou clt2]_[catégorie de commande]_[nom de la commande](_[contenu de la commande])`
 Le contenu de la commande étant optionnel.
 
 Exemple :
-`clt_morpi_dessinerrond_00`
+`clt1_morpi_dessinerrond_00`
 
 ### Catégories :
 
