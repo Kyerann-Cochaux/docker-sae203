@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+ <head>
+	<meta charset="UTF-8">
+	<title>docker-sae2.03</title>
+ </head>
+	
+ <body>
+ 
+	<h1>Projet morpion multijoueur</h1>
+	<h2>Objectifs</h2>
+	
+	<ol>
+    	<li>Développer un jeu morpion en multijoueur</li>
+    	<li>Utiliser une architecture client-serveur avec sockets Java</li>
+    	<li>Créer une interface graphique avec de l'IHM</li>
+    	<li>intégrer un docker pour héberger le serveur</li>
+    </ol>
+    
+    <h2>Présentation du projet</h2>
+    
+    <h4>Utilisation de Git</h4>
+    <p>Lors de ce projet nous avons utiliser Git. 
+       Git est un système de gestion de versions décentraliser utilisé pour suivre les modification
+       apportées a un projet au fil du temps. 
+       Il permet de : <br/>
+       sauvegarder l'historique complet du code source,<br/>
+       de travailler a plusieur sur le même projet, <br/>
+       de créer des branches indépendantes pour développer des fonctionnalité
+       sans affecté le code présent sur la branche main et de fusionner des branches.<br/>
+       Grâce a ces nombreuses fonctionnalité Git nous a permis de collaborer sur ce projet de manière efficace.
+    </p>
+    
+    <h4>Utilisation de Docker</h4>
+    <p> Docker est outil de virtualisation qui permet de créer des conteneurs, 
+        c'est a dire des environneemnt isolés. Contrairement à une machine virtuelle, un conteneur est plus léger, rapide et facile à déployer. <br/>
+        Nous avons utilisé un docker dans  notre projet pour héberger le serveur et uniformiser l'environnement d'exécuion.
+    </p>
+    
+    <h4>Fonctionnement du jeu</h4>
+    <ol>
+    	<li>Le serveur attends la connection de deux joueurs</li>
+    	<li>Les clients jouent a tour de rôle</li>
+    	<li>le plateau est mis a jours après chaque tour</li>
+    	<li>les coups sont vérifier</li>
+    </ol>
+    
+    <h4>Comment l'état du Morpion est-il communiqué a l'IHM?</h4>
+    <p>
+    	Il sera nécessaire de communiquer l'entièreté du morpion.<br/>
+
+		Cette information sera communiquer ainsi :<br/>
+		"x" : croix <br/>
+		"o" : rond <br/>
+		"0" : case vide <br/>
+		
+		
+    </p>
+    
+    <h2>Conclusion</h2>
+    <p> 
+    	Ce projet nous a permis de pratiquer la programmation réseau en java et de découvrir les dockers et git.
+    </p>
+ </body>
+ 
+</html>
+  
