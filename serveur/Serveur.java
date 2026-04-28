@@ -1,2 +1,5 @@
-public class Serveur {
+public class Serveur 
+{
+	public void envoyerCmd(String s)
+	{}
 }

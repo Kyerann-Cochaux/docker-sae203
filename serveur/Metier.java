@@ -90,6 +90,7 @@ public class Metier
 		if (numClient == 1)
 		{
 			this.plateau[lig][col] = 'x';
+			this.resynchronise();
 
 			if(this.gagner('x'))
 				this.srv.envoyerCmd("srv_morpi_j1gagner");
@@ -102,6 +103,7 @@ public class Metier
 		if (numClient == 2)
 		{
 			this.plateau[lig][col] = 'o';
+			this.resynchronise();
 
 			if(this.gagner('o'))
 				this.srv.envoyerCmd("srv_morpi_j2gagner");
