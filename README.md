@@ -10,7 +10,12 @@ Ce projet est un jeu de Morpion qui utilise docker afin de permettre à deux jou
 
 ### Instructions de lancement
 
-- Vérifier que Serveur.java est bien lancé dans le docker :
+- Construire l'image décrite dans le Dockerfile :
 ```shell
-exemple commande
+docker build -t morpion .
+```
+
+- Lancer l'image en exposant le port :
+```shell
+docker run --rm -p <port hôte>:9000 morpion
 ```
