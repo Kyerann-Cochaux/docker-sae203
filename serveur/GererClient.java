@@ -26,6 +26,8 @@ public class GererClient implements Runnable
 	
 	public GererClient ( Socket cltX, Serveur srv )
 	{
+		GererClient.gestionClient = new ArrayList<GererClient>(2);
+		
 		try
 		{
 			this.srv    = srv ;
@@ -49,11 +51,15 @@ public class GererClient implements Runnable
 	{
 		String cmd ;
 		
+		
 		while ( this.cltX.isConnected() )
 		{
+			// Envoie de la commande intial pour test
+			this.srv.envoyerCmd( "srv_systm_attentejoueur_1" );
+			
 			try
 			{
-				cmd = entrer.readLine();         // On attend qu'on client envoie une commande
+				cmd = entrer.readLine();     // On attend qu'on client envoie une commande
 				this.srv.recevoirCmd( cmd ); // Puis on l'envoie au Serveur pour être traité
 			}
 			catch ( IOException e )

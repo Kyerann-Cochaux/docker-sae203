@@ -36,15 +36,17 @@ public class Serveur
 	{
 		try
 		{
-			while ( ! srv.isClosed() )
+			this.srv = new ServerSocket( port ) ;
+			
+			while ( true )
 			{
-				this.srv    = new ServerSocket( port ) ;
 				Socket cltX = this.srv.accept();
 				
 				this.gestionClt = new GererClient( cltX, this );
 				
 				Thread thread = new Thread( this.gestionClt );
 				thread.start();
+				
 			}
 		}
 		catch ( IOException e )
