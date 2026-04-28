@@ -91,8 +91,7 @@ srv_morpi_j2gagner
 ```
 cltX_systm_connexion
 cltX_morpi_etatmorpion_XXXXXXXX (voir au dessus pour l'explications des XXXXXXXXX)
-cltX_morpi_resychronise
+cltX_morpi_resychronise (pour recevoir l'état du morpion)
 
 cltX_morpi_dessiner_LC (Ligne Collonne)
-cltX_morpi_dessinercroix_LC
 ```
