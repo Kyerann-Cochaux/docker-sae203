@@ -35,6 +35,8 @@ public class Controleur
 	
 	public void traiterCmd(String cmd)
 	{
+		System.out.println(cmd);
+		
 		if ( this.client.getNumJoueur() == -1 )
 		{
 			switch (cmd)
