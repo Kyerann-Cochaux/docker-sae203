@@ -4,10 +4,10 @@ FROM debian:latest
 # Mettre le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Copie le code du serveur dans le conteneur
-COPY /serveur /app
+# Copie le code du répertoire serveur du projet dans le conteneur à partire du répertoire de l'hote
+COPY ./serveur /app
 
-# Compile les fichiers java
+# Compilation des fichiers java du répertoire de travail
 RUN javac *.java
 
 # Le serveur va lancer cette commande par défaut
