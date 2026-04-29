@@ -15,9 +15,9 @@ import java.io.* ;
 public class Client
 {
 	// Attributs
-	private Controleur ctrl ;
-	private int        numJoueur ;
-	private String     cmdActuelle ;
+	private Controleur   ctrl ;
+	private int          numJoueur ;
+	private String       cmdActuelle ;
 	
 	// Constructeurs
 	public Client( String[] arg )
@@ -75,7 +75,7 @@ public class Client
 	}
 	
 	// Accesseur
-	public int getNumJoueur()   { return this.numJoueur   ; }
+	public int getNumJoueur() { return this.numJoueur ; }
 	
 	// Modifieur
 	public void setNumJoueur( int nvNum ) { this.numJoueur = nvNum ; }

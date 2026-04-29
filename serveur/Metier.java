@@ -118,7 +118,7 @@ public class Metier
 	public boolean traiterCommande(String cmd)
 	{
 		int numClient;
-
+		
 		try
 		{
 			numClient = Integer.parseInt("" + cmd.charAt(3));
@@ -127,19 +127,19 @@ public class Metier
 		{
 			return false;
 		}
-
+		
 		String ordre = "";
 		int cptUnderscore = 0;
-
+		
 		for (int cpt = 5; cpt < cmd.length() && cptUnderscore < 2; cpt++)
 		{
 			if (cmd.charAt(cpt) == '_')
 				cptUnderscore++;
-
+			
 			if (cptUnderscore < 2)
 				ordre += "" + cmd.charAt(cpt);
 		}
-
+		
 		switch (ordre)
 		{
 			case "systm_connexion":
@@ -163,12 +163,12 @@ public class Metier
 					//System.out.println(numClient + " " + ordre + " " + etat); //Print de test
 					break;
 				}
-
+			
 			case "morpi_dessiner":
 				{
 					int lig;
 					int col;
-
+					
 					try
 					{
 						lig = Integer.parseInt("" + cmd.charAt(20));
@@ -183,48 +183,48 @@ public class Metier
 					//System.out.println(numClient + " " + ordre + " " + lig + " " + col); //Print de test
 					break;
 				}
-
+			
 			default : return false;
 		}
-
+		
 		return true;
 	}
-
+	
 	//méthode qui détermine si un joueur a gagné
 	public boolean gagner(char symbole)
 	{
 		boolean valide;
-
+		
 		//vérifie chaque ligne
 		for (int lig = 0; lig < this.plateau.length; lig++)
 		{
 			valide = true;
-
+			
 			for (int col = 0; col < this.plateau[lig].length; col++)
 			{
 				if (this.plateau[lig][col] != symbole)
 					valide = false;
 			}
-
+			
 			if (valide)
 				return true;
 		}
-
+		
 		//vérifie chaque colonne
 		for (int col = 0; col < this.plateau[0].length; col++)
 		{
 			valide = true;
-
+			
 			for (int lig = 0; lig < this.plateau.length; lig++)
 			{
 				if (this.plateau[lig][col] != symbole)
 					valide = false;
 			}
-
+			
 			if (valide)
 				return true;
 		}
-
+		
 		//vérifie la première diagonale
 		valide = true;
 		for (int lig = 0, col = 0; lig < this.plateau.length && col < this.plateau[lig].length; lig++, col++)
@@ -232,10 +232,10 @@ public class Metier
 			if (this.plateau[lig][col] != symbole)
 					valide = false;
 		}
-
+		
 		if (valide)
 			return true;
-
+		
 		//vérifie la deuxième diagonale
 		valide = true;
 		for (int lig = 0, col = this.plateau[lig].length - 1; lig < this.plateau.length && col >= 0; lig++, col--)
@@ -246,10 +246,10 @@ public class Metier
 		
 		if (valide)
 			return true;
-
+		
 		return false;
 	}
-
+	
 	/* //Main de test
 	public static void main(String[] args)
 	{

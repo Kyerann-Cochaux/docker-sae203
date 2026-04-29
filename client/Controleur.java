@@ -1,5 +1,3 @@
-// in faut ajouter le client
-
 public class Controleur
 {
 	private FrameGrille ihm;
@@ -97,7 +95,7 @@ public class Controleur
 				if ( this.client.getNumJoueur() == 2 ) System.out.println("T'as gagné :)" ); //on gagne
 				else                                   System.out.println("T'as perdu :(" ); //on perd
 				break;
-		
+			
 			default:
 				break;
 		}

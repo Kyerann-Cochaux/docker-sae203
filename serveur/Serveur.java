@@ -46,7 +46,6 @@ public class Serveur
 				
 				Thread thread = new Thread( this.gestionClt );
 				thread.start();
-				
 			}
 		}
 		catch ( IOException e )
@@ -74,7 +73,7 @@ public class Serveur
 	
 	public void recevoirCmd( String cmd )
 	{
-		this.metier.traiterCommande( cmd ) ;
+		this.metier.traiterCommande( cmd );
 	}
 	
 	// Méthode Principale
@@ -86,6 +85,7 @@ public class Serveur
 		}
 		else
 		{
+			System.out.println("Utilisation : Serveur [port]")
 			System.exit(1);
 		}
 	}

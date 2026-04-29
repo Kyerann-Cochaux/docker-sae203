@@ -14,7 +14,7 @@ import java.util.ArrayList ;
 public class GererClient implements Runnable
 {
 	// statique pour que tout les clients profite du comportement de GererClient
-	public static ArrayList<GererClient> gestionClient = new ArrayList<GererClient>(2) ;
+	public static ArrayList<GererClient> gestionClient = new ArrayList<GererClient>(2);
 	
 	private Serveur srv ;
 	
@@ -49,15 +49,24 @@ public class GererClient implements Runnable
 	{
 		String cmd ;
 		
+		// Envoie de la première Commande par le Serveur
+		if ( this.gestionClient.size() == 1 )
+		{
+			this.envoyerCmdDuServeur( "srv_systm_attentejoueur_1" );
+		}
+		
 		while ( this.cltX.isConnected() )
 		{
-			// Envoie de la commande intial pour test
-			this.srv.envoyerCmd( "srv_systm_attentejoueur_1\n" );
-			
 			try
 			{
 				cmd = entrer.readLine();     // On attend qu'on client envoie une commande
-				this.srv.recevoirCmd( cmd ); // Puis on l'envoie au Serveur pour être traité
+				
+				String derniereCommande = cmd ;
+				
+				if ( ! cmd.equals(derniereCommande) ) // On attend qu'une nouvelle commande soit envoyer
+				{
+					this.srv.recevoirCmd( cmd ); // Puis on l'envoie au Serveur pour être traité
+				}
 			}
 			catch ( IOException e )
 			{
@@ -84,6 +93,7 @@ public class GererClient implements Runnable
 				clients.sortie.write( cmd );
 				clients.sortie.newLine();
 				clients.sortie.flush();
+				// System.out.println("Message Envoyer au Client " + this.numeroClient);
 			}
 		}
 		catch ( IOException e )
