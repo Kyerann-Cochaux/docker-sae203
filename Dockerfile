@@ -4,7 +4,7 @@ FROM debian:latest
 # Mettre le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Copie le code du répertoire serveur du projet dans le conteneur à partire du répertoire de l'hote
+# Copie le code du répertoire serveur du projet dans le conteneur à partire du répertoire de l'hôte
 COPY ./docker-sae203/serveur /app
 
 # Compilation des fichiers java du répertoire de travail
