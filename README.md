@@ -10,6 +10,11 @@ Ce projet est un jeu de Morpion qui utilise docker afin de permettre à deux jou
 
 ### Instructions de lancement
 
+- Télécharger le projet github :
+```
+git clone git@github.com:Kyerann-Cochaux/docker-sae203.git
+```
+
 - Construire l'image décrite dans le Dockerfile :
 ```shell
 docker build -t morpion
