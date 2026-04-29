@@ -5,7 +5,7 @@ FROM debian:latest
 WORKDIR /app
 
 # Copie le code du répertoire serveur du projet dans le conteneur à partire du répertoire de l'hote
-COPY /docker-sae203/serveur /app
+COPY ./docker-sae203/serveur /app
 
 # Compilation des fichiers java du répertoire de travail
 RUN javac *.java
