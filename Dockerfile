@@ -5,10 +5,13 @@ FROM debian:latest
 WORKDIR /app
 
 # Copie le code du serveur dans le conteneur
-COPY serveur /app
+COPY /serveur /app
 
 # Compile les fichiers java
 RUN javac *.java
 
 # Le serveur va lancer cette commande par défaut
 CMD ["java", "Serveur 9000"]
+
+# Ouverture du port 9000
+EXPOSE 9000
